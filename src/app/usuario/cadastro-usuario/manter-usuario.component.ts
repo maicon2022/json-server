@@ -57,6 +57,7 @@ export class ManterUsuarioComponent {
       catch (e: any) {
         this.mensagemService.erro(e.message);
       }
+      this.usuario = new Usuario('1', '', 0);
       }
     else {
       try {
