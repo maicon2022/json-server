@@ -50,6 +50,7 @@ export class ManterUsuarioComponent {
         this.usuarioService.inserir(this.usuario).subscribe(
           resposta => {
             this.roteador.navigate(['listagem-usuarios']);
+            this.usuario = new Usuario('1', '', 0);
             this.mensagemService.sucesso('Usuário cadastrado com sucesso.');
           }
         )
@@ -57,13 +58,13 @@ export class ManterUsuarioComponent {
       catch (e: any) {
         this.mensagemService.erro(e.message);
       }
-      this.usuario = new Usuario('1', '', 0);
       }
     else {
       try {
         this.usuarioService.editar(this.usuario).subscribe(
           resposta => {
             this.roteador.navigate(['listagem-usuarios']);
+            this.usuario = new Usuario('1', '', 0);
             this.mensagemService.sucesso('Usuário editado com sucesso.');
           }
         )
