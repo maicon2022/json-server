@@ -15,19 +15,23 @@ export class ListagemUsuarioComponent {
   usuarios: Usuario[] = [];
   constructor(private roteador: Router, private usuarioService: UsuarioRestService) {
     usuarioService.listar().subscribe(
-        {
-          next: usuariosRetornados => this.usuarios = usuariosRetornados
+        resposta => {
+          this.usuarios = resposta
         }
     );
   }
 
   remover(usuarioARemover: Usuario) {
-    // this.usuarioService.remover(usuarioARemover);
-    // this.usuarios = this.usuarios.filter(usuario => usuario.id != usuarioARemover.id);
-    // this.roteador.navigate(['listagem-usuarios']);
+    this.usuarioService.remover(usuarioARemover.id).subscribe(
+      resposta => {
+        this.usuarios = this.usuarios.filter(usuario => usuario.id != usuarioARemover.id);
+        this.roteador.navigate(['listagem-usuarios']);
+      }
+    )
   }
 
   editar(usuarioAEditar: Usuario) {
+    console.log(usuarioAEditar);
     this.roteador.navigate(['edicao-usuario', usuarioAEditar.id]);
   }
 }

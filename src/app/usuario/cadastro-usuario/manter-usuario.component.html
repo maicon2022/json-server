@@ -2,7 +2,7 @@
     <mat-card-content>
         <mat-form-field>
             <mat-label>Id</mat-label>
-            <input matInput [(ngModel)]="usuario.id">
+            <input matInput [(ngModel)]="usuario.id" [readonly]="true">
         </mat-form-field>
 
         <mat-form-field>
@@ -17,6 +17,10 @@
 </mat-card>
 
 <button mat-icon-button (click)="inserir()">
+  @if(modoEdicao) {
+    <mat-icon>edit</mat-icon>
+  }
+  @else {
     <mat-icon>add</mat-icon>
+  }
 </button>
-
